@@ -31,8 +31,12 @@ public class HeroController : MonoBehaviour
     void FixedUpdate()
     {
         Debug.DrawRay(transform.position, Vector2.down * 0.1f, Color.red);
-        //bool hit = Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("Ground"));
-        //grounded = hit;
+
+        Move();
+    }
+
+    public void Move()
+    {
         grounded = Physics2D.BoxCast(transform.position, new Vector2(0.2f, 0.1f), 0.0f, Vector2.down, 0.3f, 1 << LayerMask.NameToLayer("Ground"));
 
         if ((Input.GetAxis("Horizontal") > 0) && (grounded))
@@ -62,28 +66,16 @@ public class HeroController : MonoBehaviour
             heroAnimState = HeroAnimState.JUMP;
             rgb.AddForce(Vector2.up * jumpForce);
             print(rgb.velocity.ToString());
-            //rgb.velocity = new Vector2(rgb.velocity.x, Mathf.Clamp(rgb.velocity));
             grounded = false;
         }
         rgb.velocity = new Vector2(Mathf.Clamp(rgb.velocity.x, -maxVel.x, maxVel.x), Mathf.Clamp(rgb.velocity.y, -maxVel.y, maxVel.y));
-        //rgb.velocity = new Vector2()
-
     }
 
-    //public void OnCollisionStay2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.name == "Ground")
-    //    {
-    //        grounded = true;
-    //    }
-    //}
-    //public void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.name == "Ground")
-    //    {
-    //        grounded = false;
-    //    }
-    //}
+    public void Reset()
+    {
+        this.transform.position = new Vector2(0f, 1f);
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -93,18 +85,21 @@ public class HeroController : MonoBehaviour
                 gameController.Score += 1;
                 break;
             case "DeathPoint":
-                this.transform.position = new Vector2(0f, 1f);
                 gameController.GotHit();
                 gameController.Lives--;
+                Reset();
                 break;
         }
-        //if(collision.gameObject.tag == "Cherry")
-        //{
-        //    Destroy(collision.gameObject);
-        //}
-        //if(collision.gameObject.tag == "DeathPoint")
-        //{
-        //    this.transform.position = new Vector2(0f, 1f);
-        //}
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Enemy":
+                gameController.GotHit();
+                gameController.Lives--;
+                Reset();
+                break;
+        }
     }
 }

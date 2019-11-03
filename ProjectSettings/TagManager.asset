@@ -9,6 +9,7 @@ TagManager:
   - DeathPoint
   - Gem
   - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - Player
   - Ground
-  - 
+  - Wall
   - 
   - 
   - 

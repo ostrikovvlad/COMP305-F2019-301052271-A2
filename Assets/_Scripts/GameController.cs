@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
         set
         {
             score = value;
-            scoreLabel.text = score.ToString();
+            scoreLabel.text = score.ToString() + "/" + cherryCount.ToString();
         }
     }
 
