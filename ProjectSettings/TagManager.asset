@@ -10,6 +10,7 @@ TagManager:
   - Gem
   - Enemy
   - Wall
+  - HighScore
   layers:
   - Default
   - TransparentFX

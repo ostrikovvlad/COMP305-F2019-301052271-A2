@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/* Filename: EnemyController.cs
+ * Author: Vladislav Ostrikov
+ * Last modified by: Vladislav Ostrikov
+ * Last modified: Nov 3, 2019
+ * This script is used for enemy controller. It manages movements.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,9 +28,11 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        Move(); // Is used for moving an enemy
     }
-
+    /// <summary>
+    /// This method is responsible for moving enemy if it is on the ground(also checks it) and if there are no boundaries ahead it
+    /// </summary>
     void Move()
     {
         isGrounded = Physics2D.BoxCast(transform.position, new Vector2(0.2f, 0.1f), 0.0f, Vector2.down, 0.3f, 1 << LayerMask.NameToLayer("Ground"));

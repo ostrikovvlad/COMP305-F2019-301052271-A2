@@ -66,6 +66,7 @@
     <Compile Include="Assets\_Scripts\GameController.cs" />
     <Compile Include="Assets\_Scripts\HeroAnimState.cs" />
     <Compile Include="Assets\_Scripts\HeroController.cs" />
+    <Compile Include="Assets\_Scripts\HighScore.cs" />
     <None Include="Assets\codeandweb.com\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/ostri/OneDrive/Desktop/Folders/College/Fall 2019/COMP 305/Assignments/COMP305-F2019-301052271-A2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
